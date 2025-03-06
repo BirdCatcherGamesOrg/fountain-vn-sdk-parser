@@ -1,0 +1,5 @@
+{%- for scene in scenes %}
+    {%- for line in scene.lines %}
+1,{{ scene.text }},{{ scene.scene_number }},{{ scene.tags }},{{ scene.userData }},{{ line.section }},{{ line.speaker }},{{ line.text }},{{ line.tags }}
+    {% endfor %}
+{%- endfor %}
