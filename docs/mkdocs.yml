@@ -1,0 +1,23 @@
+﻿site_name: BCIVNDK Fountain Script Parser
+docs_dir: ../
+
+theme:
+  name: readthedocs
+
+markdown_extensions:
+  - toc:
+      baselevel: 1
+
+plugins:
+  - search
+
+exclude_docs: |
+  **
+  !search/**
+  !js/**
+  !img/**
+  !css/**
+  !docs/pages/**
+
+nav:
+  - Home: docs/pages/index.md

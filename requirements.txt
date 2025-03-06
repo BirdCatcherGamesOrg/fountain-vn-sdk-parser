@@ -1,2 +1,4 @@
-﻿setuptools~=68.2.0
-Jinja2~=3.1.6
+﻿setuptools~=68.2
+Jinja2~=3.1
+mkdocstrings[python]~=0.29
+reuse~=5.0

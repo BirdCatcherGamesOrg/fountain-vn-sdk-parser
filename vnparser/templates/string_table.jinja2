@@ -1,5 +1,7 @@
-{%- for scene in scenes %}
+{# SPDX-License-Identifier: MPL-2.0 #}
+RowName,Version,SceneHeader,SceneNumber,SceneTags,SceneUserData,SceneSection,LineNumber,Speaker,Line,LineTags
+{% for scene in scenes %}
     {%- for line in scene.lines %}
-1,{{ scene.text }},{{ scene.scene_number }},{{ scene.tags }},{{ scene.userData }},{{ line.section }},{{ line.speaker }},{{ line.text }},{{ line.tags }}
+{{ scene.text }}#{{ scene.scene_number }}#{{ loop.index }}#{{ line.speaker[0] }},1,{{ scene.text }},{{ scene.scene_number }},{{ scene.tags }},{{ scene.userData }},{{ line.section }},{{ loop.index }},{{ line.speaker }},{{ line.text }},{{ line.tags }}
     {% endfor %}
 {%- endfor %}

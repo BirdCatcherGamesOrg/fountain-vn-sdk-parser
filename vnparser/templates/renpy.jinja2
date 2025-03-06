@@ -1,0 +1,20 @@
+{# SPDX-License-Identifier: MPL-2.0 #}
+{% for scene in scenes %}
+label {{ scene.label }}:
+    {% if scene.synopsis %}
+    # {{ scene.synopsis }}
+    {% endif %}
+    {% if scene.bg %}
+    show bg {{ scene.bg }}
+    {% endif %}
+    {% if scene.music %}
+    play music "{{ scene.music }}"
+    {% endif %}
+    {% for line in scene.lines %}
+        {% for linepart in line %}
+    {{ linepart }}
+        {% endfor %}
+    {% endfor %}
+
+
+{% endfor %}
