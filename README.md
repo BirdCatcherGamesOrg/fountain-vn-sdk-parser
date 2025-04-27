@@ -1,6 +1,6 @@
 ﻿# fountain-vn-sdk-parser
 
-This script converts files written with Fountain syntax into drop-in assets for use in visual novels, for example Ren'Py. Writers can feel more comfortable working with the screenplay format and software like Final Draft instead of an IDE for VN programming. The format of a screenplay maps intuitively onto a VN script, and this tool closely matches screenplay elements to visual novel elements.
+This script converts files written in the Fountain syntax into drop-in assets for use in visual novel SDK's, e.g. Ren'Py .rpy files. Writers can feel more comfortable working with the screenplay format and software like Final Draft instead of an IDE. The format of a screenplay maps intuitively onto a VN script, so this tool easily converts fountain elements to visual novel elements.
 
 Turn this:
 ```
@@ -13,7 +13,7 @@ INT. QUINN'S LIVING ROOM - Night #1#
 
 I walk through the hallway to Quinn's apartment. But like, dramatically.
 
-I fling the door. Quinn is beaming at Luca, talking about something beam-worthy.
+I fling the door. Quinn beams at Luca, talking about something beam-worthy.
 
 CUE: ENTER QUINN, HAPPY; LUCA
 
@@ -31,7 +31,7 @@ Mind if I eat your food?
 Quinn shoos me away to gush about beam-worthy topic to Luca.
 
 INT. QUINN'S KITCHEN -
-= Ellis eats Quinn's food, with permission.
+= Ellis eats Quinn's food, with permission. TODO: Need to choose a different song.
 
 I pull out some food from a common place where people store food. Be it pantry, or fridge. I am there.
 
@@ -47,7 +47,7 @@ label int_quinns_living_room_night:
     show bg int_quinns_living_room_night
     play music "audio\int_quinns_living_room_night.mp3"
     "I walk through the hallway to Quinn's apartment. But like, dramatically."
-    "I fling the door. Quinn is beaming at Luca, talking about something beam-worthy."
+    "I fling the door open. Quinn beams at Luca, talking about something beam-worthy."
     show q happy
     show l
     q "Oh hi Ellis!"
@@ -58,9 +58,8 @@ label int_quinns_living_room_night:
 
 
 label int_quinns_kitchen:
-    # Ellis eats Quinn's food, with permission.
+    # Ellis eats Quinn's food, with permission. TODO: Need to choose a different song.
     show bg int_quinns_kitchen
-    play music "audio\int_quinns_kitchen.mp3"
     "I pull out some food from a common place where people store food. Be it pantry, or fridge. I am there."
     e "It's food!"
 
@@ -75,17 +74,21 @@ With Better Fountain, the fountain files will be previewable while editing and c
 
 # Setup
 
-Install Python then use either git or download this repository and run `run.cmd`. Users who don't expect to modify the script can download the repository. However, forking this repository is recommended for advanced users, due to the MPL-2.0 license terms.
+Install Python, then fork this repository and run `run.cmd`. Alternatively, users who don't plan on modifying the code can download the repository as a .zip archive. However, forking this repository is recommended for advanced users due to the MPL-2.0 license terms.
 
 ## Configuration
 
-On the initial run, a `config.json` file will be created under the config dir. This file will contain properties such as where to input or output the script data.
+On the initial run, a `config.json` file will be created under the config dir, and the user will be prompted to for values to initialize the VN project. This file contains properties such as where to input or output the script data.
 
 ## Assets and SDK Rendering
 
-The tool creates a configuration file for the script under `config/assets` which can be modified manually to map elements of the script to assets in the game project. For example, this configuration maps a character like `ELLIS` in the script to a character `e` in RenPy. The configuration file is updated live as the script is parsed. New characters, scenes, etc. are added automatically, but configurations for existing elements are read-only.
+The tool creates a configuration file for the script under `config/assets` which can be modified manually to map elements of the script to assets in the game project. For example, a renpy asset configuration maps a character like `ELLIS` from the script to a character `e` in RenPy. Scenes are converted to global labels and given a guess for an optional bg and music file. The configuration values can be modified to remap or remove assets in case the name doesn't align with something in the actual game. The configuration file is updated live as the script is parsed. New characters, scenes, etc. are added automatically, but configurations for existing elements are read-only.
 
 On the roadmap is a robust asset management system where the fountain script becomes the source of truth for data driven development of a VN! Manage characters, scenes, music cues, etc. all from the screenplay format, and adjust as needed once its exported to the VN's bespoke setup.
+
+# Fountain
+
+See https://fountain.io/ for an introduction to fountain files and their syntax.
 
 # Licensing
 
