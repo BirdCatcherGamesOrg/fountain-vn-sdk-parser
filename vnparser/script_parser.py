@@ -16,6 +16,7 @@ class FountainVNParser:
         self.script: vnparser.types.ParsedScript = {'characters': {}, 'scenes': []}
         self.currentSceneSection = []
         self.parser = CallbackParser()
+        self.parser.useTags = True
         self.parser.onDialogue = self._parse_dialogue
         self.parser.onSceneHeading = self._parse_scene_heading
         self.parser.onAction = self._parse_action
@@ -55,19 +56,23 @@ class FountainVNParser:
 
     def _parse_scene_heading(self, text, scene_number):
         logger.info(f'Parsing scene {text}')
+        asset_id = ''
+        if self.parser.script.elements[-1].tags:
+            if tag := self.parser.script.elements[-1].tags[0]:
+                asset_id = tag.rstrip()
+                logger.info(f'Scene has asset_id {asset_id}')
+
         self.script['scenes'].append({
+            'id': asset_id,
             'lines': [],
             'heading': text,
-            'scene_number': scene_number,
-            'synopsis': '',
-            'userData': '',
-            'tags': ';'.join(self.parser.script.elements[-1].tags).rstrip()})
+        })
         self.currentSceneSection = []
 
     def _parse_dialogue(self, speaker, extension, parenthetical, line, is_dual_dialogue):
         if speaker not in self.script['characters']:
             logger.info(f'Discovered character {speaker}')
-            self.script['characters'][speaker] = {'name': speaker}
+            self.script['characters'][speaker] = {'script_name': speaker}
 
         self.script['scenes'][-1]['lines'].append({
             'dialogue': {
@@ -102,12 +107,7 @@ class FountainVNParser:
         if not text:
             return
 
-        scene = self.script['scenes'][-1]
-        if not scene['lines'] and not scene['synopsis']:
-            scene['synopsis'] = text
-            return
-
-        scene['lines'].append({
+        self.script['scenes'][-1]['lines'].append({
             'synopsis': {'text': text},
         })
 

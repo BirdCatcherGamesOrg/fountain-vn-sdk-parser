@@ -9,6 +9,8 @@ import vnparser.types as vn_types
 from jinja2 import Environment
 
 import vnparser.renpy_sdk.types as rpy_types
+from bci.model.line import Line
+from bci.model.scene import Scene
 
 logger: logging.Logger = logging.getLogger(__name__)
 
@@ -39,7 +41,7 @@ class Renderer:
         return rendered_template
 
 
-    def _make_scene(self, scene: vn_types.Scene) -> rpy_types.RenderScene:
+    def _make_scene(self, scene: Scene) -> rpy_types.RenderScene:
         scene_name = scene['heading'].split('#')[0].strip()
         logger.info(f"Rendering {scene_name}")
         scene_name =(
@@ -50,11 +52,14 @@ class Renderer:
             'music': str(Path('audio') / f'{scene_name}.mp3'),
         })
 
-        render_scene: rpy_types.RenderScene = {
-            'synopsis': scene['synopsis'],
-            'lines': [self._make_line(line) for line in scene['lines']],
-            'menu': {},
-        }
+        # If the first line of the scene is a synopsis, move it to be the first comment under the label.
+        lines_to_render = scene['lines']
+        render_scene: rpy_types.RenderScene = {}
+        if synopsis := scene['lines'][0].get('synopsis'):
+            render_scene['synopsis'] = synopsis['text']
+            lines_to_render = lines_to_render[1:-1]
+
+        render_scene['lines'] = [self._make_line(line) for line in lines_to_render]
 
         if label := config_scene.get('label'):
             render_scene['label'] = label
@@ -68,7 +73,7 @@ class Renderer:
         return render_scene
 
 
-    def _make_line(self, line: vn_types.Line) -> List[str]:
+    def _make_line(self, line: Line) -> List[str]:
         lines = []
         if narration := line.get('narration'):
             lines.append(f"\"{narration['text']}\"")

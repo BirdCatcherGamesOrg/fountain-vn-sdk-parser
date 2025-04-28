@@ -1,6 +1,6 @@
 ﻿# SPDX-License-Identifier: MPL-2.0
 
-from typing import Dict, List, NotRequired, TypedDict
+from typing import Dict, List, TypedDict
 
 
 class Scene(TypedDict, total=False):

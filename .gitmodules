@@ -1,0 +1,3 @@
+[submodule "bci"]
+	path = bci
+	url = https://github.com/BirdCatcherGamesOrg/bcivndk-script-asset-model.git
