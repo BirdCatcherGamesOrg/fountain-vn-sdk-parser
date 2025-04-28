@@ -13,7 +13,7 @@ INT. QUINN'S LIVING ROOM - Night #1#
 
 I walk through the hallway to Quinn's apartment. But like, dramatically.
 
-I fling the door. Quinn beams at Luca, talking about something beam-worthy.
+I fling the door open. Quinn beams at Luca, talking about something beam-worthy.
 
 CUE: ENTER QUINN, HAPPY; LUCA
 
@@ -89,6 +89,12 @@ On the roadmap is a robust asset management system where the fountain script bec
 # Fountain
 
 See https://fountain.io/ for an introduction to fountain files and their syntax.
+
+# Thanks / Third-Party Licenses
+
+* The fountain Python library is developed and maintained by Ian Thomas in the fountain-tools repository https://github.com/wildwinter/fountain-tools, released under the MIT license. You can follow Ian on his medium page https://wildwinter.medium.com/. It goes without saying that this project would not be possible without this library.
+
+* The templating library jinja, owned by Pallets available here https://github.com/pallets/jinja released under the BSD-3-Clause license.
 
 # Licensing
 
