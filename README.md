@@ -44,7 +44,7 @@ Into this:
 ```
 label int_quinns_living_room_night:
     # Ellis visits Quinn and Luca to catch up after work.
-    show bg int_quinns_living_room_night
+    scene bg int_quinns_living_room_night
     play music "audio\int_quinns_living_room_night.mp3"
     "I walk through the hallway to Quinn's apartment. But like, dramatically."
     "I fling the door open. Quinn beams at Luca, talking about something beam-worthy."
@@ -59,7 +59,7 @@ label int_quinns_living_room_night:
 
 label int_quinns_kitchen:
     # Ellis eats Quinn's food, with permission. TODO: Need to choose a different song.
-    show bg int_quinns_kitchen
+    scene bg int_quinns_kitchen
     "I pull out some food from a common place where people store food. Be it pantry, or fridge. I am there."
     e "It's food!"
 
