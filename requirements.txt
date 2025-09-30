@@ -32,7 +32,7 @@ python-dateutil==2.9.0.post0
 python-debian==1.0.1
 PyYAML==6.0.2
 pyyaml_env_tag==0.1
-requests==2.32.3
+requests==2.32.4
 reuse==5.0.0
 six==1.17.0
 tomlkit==0.13.2
