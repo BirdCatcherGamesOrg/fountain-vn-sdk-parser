@@ -36,5 +36,5 @@ requests==2.32.4
 reuse==5.0.0
 six==1.17.0
 tomlkit==0.13.2
-urllib3==2.5.0
+urllib3==2.6.0
 watchdog==6.0.0
